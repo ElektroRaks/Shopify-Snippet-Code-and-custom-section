@@ -1,112 +1,192 @@
-{%- style -%}
-    .section-{{ section.id }}-padding {
-      padding-top: calc({{ section.settings.padding_top }}px * 0.75);
-      padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+       /* Custom expand flex card ========================================= */
+    #expand-flex-card {
+      padding: 0px;
     }
-    
-    @media screen and (min-width: 750px) {
-        .section-{{ section.id }}-padding {
-          padding-top: {{ section.settings.padding_top }}px;
-          padding-bottom: {{ section.settings.padding_bottom }}px;
-        }
+    #expand-flex-card .credit {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #000;
+    }
+    #expand-flex-card .options {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      overflow: hidden;
+      min-width: 100%;
+      max-width: 100%;
+      width: calc(100% - 100px);
+      height: 70vh;
+    }
+    @media screen and (max-width: 718px) {
+      a.option.active {
+          background-position: top center !important;
+      }
+    }
+  /*   @media screen and (max-width: 718px) {
+      #expand-flex-card .options {
+        min-width: 600px;
+      }
+      #expand-flex-card .options .option:nth-child(5) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 638px) {
+      #expand-flex-card .options {
+        min-width: 440px;
+      }
+      #expand-flex-card .options .option:nth-child(4) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 558px) {
+      #expand-flex-card .options {
+        min-width: 360px;
+      }
+      #expand-flex-card .options .option:nth-child(3) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 478px) {
+      #expand-flex-card .options {
+        min-width: 280px;
+      }
+      #expand-flex-card .options .option:nth-child(2) {
+        display: none;
+      }
+    } */
+    #expand-flex-card .options .option {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      min-width: 16%;
+      margin: 0px;
+      background: var(--optionBackground, var(--defaultBackground, #e6e9ed));
+      background-size: auto 120%;
+      background-position: center;
+      cursor: pointer;
+      transition: 0.9s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+    }
+    #expand-flex-card .options .option:nth-child(1) {
+      --defaultBackground: #ed5565;
+    }
+    #expand-flex-card .options .option:nth-child(2) {
+      --defaultBackground: #fc6e51;
+    }
+    #expand-flex-card .options .option:nth-child(3) {
+      --defaultBackground: #ffce54;
+    }
+    #expand-flex-carddy .options .option:nth-child(4) {
+      --defaultBackground: #2ecc71;
+    }
+    #expand-flex-card .options .option:nth-child(5) {
+      --defaultBackground: #5d9cec;
+    }
+    #expand-flex-card .options .option:nth-child(6) {
+      --defaultBackground: #ac92ec;
+    }
+    #expand-flex-card .options .option.active {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      align-items: flex-end;
+      flex-grow: 10000;
+      transform: scale(1);
+      max-width: 100%;
+      margin: 0px;
+      border-radius: 0px;
+      height: 70vh;
+      background-size: auto 100%;
+    }
+    #expand-flex-card .options .option.active .shadow {
+      background-color: #ffffffe0;
+    }
+    #expand-flex-card .options .option:not(.active) {
+      flex-grow: 1;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+    }
+    #expand-flex-card .options .option:not(.active) .shadow {
+      bottom: -40px;
+      background-color: #ffffff00;
+      transition: 0.9s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+    }
+    #expand-flex-card .options .option .shadow {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 80px;
+      height: 100%;
+      transition: 0.9s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+    }
+    @media (max-width: 749px) {
+      #expand-flex-card .options {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          flex-wrap: wrap;
+      }
+    }
+
+    #expand-flex-card .options .option .title {
+      color: #fff;
+      font-family: "Oswald", sans-serif !important;
+      transition: 0.9s;
+      font-size: 24px;
+      font-weight: bold;
+      writing-mode: tb-rl;
+      transform: rotate(180deg);
+      overflow: hidden;
+    }
+
+    #expand-flex-card .options .option.active .title {
+      color: #000000;
+      /*   left: -2%; */
+    }
+{% endstyle %}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    {% comment %}
+      {{ section.settings.custom_liquid }}
+    {% endcomment %}
+    <section id="expand-flex-card">
+      <div class="options">
         {%- for block in section.blocks -%}
-            .flex-items:nth-child({{ forloop.index }}) {
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-              width: {{ block.settings.col_width }}%;
-              padding:{{ block.settings.col_padding }}px;
-              flex-basis: auto;
-              align-self: auto;
-              order: 0;
-               background-image:url({{ block.settings.bg_image | image_url | image_url }});
-              background-repeat: no-repeat;
-              background-size: cover;
-            }
+          <a
+            class="option"
+            href="{{ block.settings.collection.url }}"
+            style="--optionBackground:url({{ block.settings.collection.featured_image | image_url }}); text-decoration:none; background-size: cover; background-repeat: no-repeat;"
+          >
+            <div class="shadow">
+              <h2 class="title">
+                {%- if block.settings.collection.title != blank -%}
+                  {{- block.settings.collection.title | escape -}}
+                {%- endif -%}
+              </h2>
+            </div>
+          </a>
         {%- endfor -%}
-        .cs-content{
-                  width:80%
-        }
-    }
-    
-    .flex-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: normal;
-        align-items: normal;
-        align-content: normal;
-        gap:0px;
-        width:100%;
-    }
-    
-    
-    
-    @media screen and (max-width: 749px) {
-        .section-{{ section.id }}-padding {
-          padding-top: {{ section.settings.padding_top }}px;
-          padding-bottom: {{ section.settings.padding_bottom }}px;
-        }
-        {%- for block in section.blocks -%}
-            .flex-items:nth-child({{ forloop.index }}) {
-              width: {{ block.settings.col_width_mobile }}%;
-              order: {{ block.settings.column_order }};
-              padding:{{ block.settings.col_padding_mobile }}px;
-            }
-        {%- endfor -%}
-        .cs-content{
-          width:100%
-        }
-      }
-    
-      .section-width{
-        display: flex;
-        justify-content: center;
-      }
-    
-      .inner-section-width{
-        display: flex;
-        justify-content: center;
-        width:1300px;
-      }
-{%- endstyle -%}
-  
-<div class="color-{{ section.settings.color_scheme }} gradient section-width">
-  <div class="section-{{ section.id }}-padding inner-section-width">
-    <div class="flex-container">
-      {%- for block in section.blocks -%}
-        <div class="flex-items">
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url }}" width="100%" height="300px" style="object-fit:cover;">
-          {%- endif -%}
-          <center class="cs-content">
-            {% if block.settings.heading != blank %}
-              <h2>{{ block.settings.heading }}</h2>
-              {% if block.settings.sub_heading != blank %}
-                <p>{{ block.settings.sub_heading }}</p>
-              {%- endif -%}
-            {%- endif -%}
-          </center>
-          {%- if block.settings.show_social -%}
-            <center>
-              <strong>- <small>Social Media</small> -</strong>
-            </center>
-            {%- render 'social-icons' -%}
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
-    </div>
+      </div>
+    </section>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "custom-card-expand-collection",
+  "name": "sporty-expan-flex",
   "tag": "section",
   "class": "section",
   "settings": [
-
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -137,104 +217,42 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 52
     }
-  ],"max_blocks": 12,
+  ],
+  "max_blocks": 6,
   "blocks": [
     {
-      "type": "column",
-      "name": "column",
+      "type": "featured_collection",
+      "name": "t:sections.collection-list.blocks.featured_collection.name",
       "settings": [
         {
-          "type": "text",
-          "id": "heading",
-          "default": "Text here!",
-          "label": "Heading"
-        },
-        {
-          "type": "textarea",
-          "id": "sub_heading",
-          "default": "Lorem ipsum dolor sit amet consectetur adipiscing elit penatibus, scelerisque tristique habitasse rhoncus mauris senectus suspendisse, consequat et ac neque justo aliquam vulputate.",
-          "label": "Sub Heading"
-        },
-        {
-              "type": "image_picker",
-              "id": "image",
-              "label": "Image"
-        },
-        {
-              "type": "image_picker",
-              "id": "bg_image",
-              "label": "Background Image"
-        },
-        {
-          "type": "color",
-          "id": "color_link",
-          "label": "Links",
-          "default": "#2980b9"
-        },
-        {
-          "type": "header",
-          "content": "Range Setings"
-        },
-        {
-          "type": "range",
-          "id": "col_width",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Column Width Value",
-          "default": 25
-        },
-        {
-          "type": "range",
-          "id": "col_padding",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "px",
-          "label": "Collumn Padding",
-          "default": 2
-        },
-        {
-          "type": "checkbox",
-          "id": "show_social",
-          "default": true,
-          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
-          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
-        },
-        {
-          "type": "header",
-          "content": "Mobile Settings"
-        },
-        {
-          "type": "number",
-          "id": "column_order",
-          "default": 0,
-          "label": "Column order "
-        },
-        {
-          "type": "number",
-          "id": "col_padding_mobile",
-          "default": 0,
-          "label": "Column Padding Mobile "
-        },
-        {
-          "type": "range",
-          "id": "col_width_mobile",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Column Width Value",
-          "default": 33
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "custom-card-expand-collection"
+      "name": "sporty-expan-flex",
+      "blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
