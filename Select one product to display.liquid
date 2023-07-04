@@ -1,0 +1,8 @@
+{% assign selectedProduct = section.settings.product %}
+
+{% if selectedProduct %}
+  <h2>{{ selectedProduct.title }}</h2>
+  <p>{{ selectedProduct.description }}</p>
+  <img src="{{ selectedProduct.featured_image.src | image_url: width: 533}}" alt="{{ selectedProduct.title }}">
+  <a href="{{ selectedProduct.url }}">View Product</a>
+{% endif %}
