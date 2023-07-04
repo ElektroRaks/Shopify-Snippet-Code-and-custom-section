@@ -1,0 +1,229 @@
+.footer-block__heading {
+  font-family: "Oswald" !important;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.heading-title {
+  font-size: 35px;
+  font-weight: 900 !important;
+  margin: 20px 0px;
+}
+
+.heading-title-col {
+  font-family: "Jost", sans-serif !important;
+  font-size: 30px;
+  font-weight: bold !important;
+  margin: 15px 0px 15px 0px !important;
+}
+
+.heading-details {
+  font-size: 18px;
+  font-weight: 800 !important;
+  font-family: "Jost", sans-serif !important;
+}
+.before-heading {
+  font-family: "Jost", sans-serif !important;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin: 0px 0px;
+}
+
+.ultimate-features-2-wrapper
+  .ultimate-features-2-item
+  .ultimate-features-2-item-title {
+  margin-top: 10px !important;
+}
+/* ulti mobile responsive */
+@media screen and (max-width: 768px) {
+  .ultimate-features-2-item-title {
+    font-size: 14px !important;
+    margin-bottom: -12px;
+  }
+  .ultimate-features-2-item-content {
+    font-size: 14px !important;
+  }
+}
+
+img {
+  -webkit-mask-image: linear-gradient(
+    45deg,
+    #000 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    #000 75%
+  );
+  mask-image: linear-gradient(
+    45deg,
+    #000 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    #000 75%
+  );
+  -webkit-mask-size: 800%;
+  mask-size: 800%;
+  -webkit-mask-position: 0;
+  mask-position: 0;
+}
+
+img:hover {
+  transition: mask-position 2s ease, -webkit-mask-position 2s ease;
+  -webkit-mask-position: 120%;
+  mask-position: 120%;
+  opacity: 1;
+}
+
+/* sportysole featured product section */
+
+/* set correct box model */
+* {
+  box-sizing: border-box;
+}
+
+/* flexbox container */
+.holy-grail-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 1400px;
+}
+
+/* columns (mobile) */
+.holy-grail-flexbox > * {
+  width: 100%;
+  padding: 1rem;
+}
+.button {
+  font-size: 14px !important;
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.button:hover {
+  background-color: #0db22a;
+  color: #ffffff;
+}
+
+/* background colors */
+/* .holy-grail-flexbox > .main-content {background:#fff}
+.holy-grail-flexbox > .left-sidebar {background:#72c2f1}
+.holy-grail-flexbox > .right-sidebar {background:#c5ed77} */
+
+/* tablet breakpoint */
+@media (min-width: 768px) {
+  .holy-grail-flexbox > .left-sidebar,
+  .holy-grail-flexbox > .right-sidebar {
+    width: 50%;
+  }
+}
+
+/* desktop breakpoint ========================================= */
+@media (min-width: 1024px) {
+  .holy-grail-flexbox > .header {
+    order: -2; /* header first */
+  }
+  .holy-grail-flexbox > .left-sidebar {
+    /* left sidebar second (first in second row) */
+    order: -1;
+  }
+  .holy-grail-flexbox > .main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+  .holy-grail-flexbox > .left-sidebar,
+  .holy-grail-flexbox > .right-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25%;
+    padding: 25px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .holy-grail-flexbox {
+    display: flex;
+    flex-direction: column !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding: 12px !important;
+  }
+
+  main.main-content img {
+    width: 100% !important;
+  }
+}
+
+/* Header ========================================= */
+
+.menu-img-show {
+  display: block;
+}
+.menu-img-hide {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .mobile-show {
+    display: block;
+  }
+  .mobile-hide {
+    display: none;
+  }
+}
+
+#sporty-header a {
+  font-weight: 600;
+}
+.menu-drawer summary.menu-drawer__menu-item {
+  font-family: "Oswald";
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cs-meg-menu-child {
+  color: #bbd536;
+  letter-spacing: 3px;
+}
+.cs-meg-menu-grand {
+  font-weight: 500 !important;
+  font-family: Jost, sans-serif !important;
+  font-family: Nunito Sans, sans-serif;
+  text-transform: capitalize !important;
+  padding-left: 0px;
+  transition: all 0.9s;
+}
+.cs-meg-menu-grand:hover {
+  padding-left: 1px;
+}
+
+#sporty-header .header__icon {
+  background-color: #ededed;
+  border-radius: 30px;
+  margin-left: 5px;
+}
+#sporty-header .header__icon:hover {
+  background-color: #bcbcbc;
+}
+#sporty-header icon {
+  font-size: 19px;
+}
+h2,
+p {
+  /*   color: black; */
+  font-family: "Jost", sans-serif !important;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+p {
+  font-size: 16px;
+}
+
+.card-information > .price {
+  font-family: "Jost", sans-serif !important;
+  font-family: "Nunito Sans", sans-serif;
+}
