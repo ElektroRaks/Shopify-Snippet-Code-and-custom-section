@@ -1,0 +1,148 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .tab-customize {
+    overflow: hidden;padding: 20px 0;
+    border-bottom: 2px solid #f1f2f4;
+    margin-bottom: 15px;
+  }
+  .tab-customize button {
+    color:#c4c4c4;
+    font-family: "Oswald", sans-serif !important;
+    font-size:16px;
+    font-weight: 900;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    margin-right: 5%;
+  }
+  .tab-customize button:hover {
+    color:black;
+  }
+  .tab-customize button.active {
+    color:black;
+  }
+  .tabcontent-cus {
+    display: none;
+  }
+
+  .cs-grid-tabs {
+      width: 70%;
+  }
+{%- endstyle -%}
+<div class=" page-width color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    <!-- Tabs -->
+    <div class="tab-customize">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        <button class="tablinks-cus" onclick="openTab(event, 'tab-{{ forloop.index }}')" id="tab-cus-active">
+          {{ block.settings.tab_heading }}
+        </button>
+      {% endfor %}
+    </div>
+    <!-- Tab content -->
+    {%- for block in section.blocks -%}
+      <div id="tab-{{ forloop.index }}" class="tabcontent-cus">
+        {%- if block.settings.content != blank -%}
+          {{ block.settings.content }}
+        {% elsif block.settings.custom_liquid != blank %}
+          {{ block.settings.custom_liquid }}
+        {% else %}
+          {{ product.description }}
+        {%- endif -%}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "product-tabs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tabs",
+      "name": "tabs",
+      "settings": [
+         {
+          "type": "inline_richtext",
+          "id": "tab_heading",
+          "default": "Tab 1",
+          "label": "Tab Name"
+        },{
+          "type": "richtext",
+          "id": "content",
+          "default": "<p>Content here.....</p>",
+          "label": "Tab Content"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "product-tabs",
+      "blocks": [
+        {
+          "type": "tabs"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
