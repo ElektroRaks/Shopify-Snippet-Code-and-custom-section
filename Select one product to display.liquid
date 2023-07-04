@@ -6,3 +6,24 @@
   <img src="{{ selectedProduct.featured_image.src | image_url: width: 533}}" alt="{{ selectedProduct.title }}">
   <a href="{{ selectedProduct.url }}">View Product</a>
 {% endif %}
+
+
+{% schema %}
+{
+  "name": "custom-featured-product",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:sections.featured-product.settings.product.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-featured-product"
+    }
+  ]
+}
+{% endschema %}
