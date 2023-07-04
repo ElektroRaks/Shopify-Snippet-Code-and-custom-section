@@ -1,0 +1,292 @@
+{%- style -%}
+        .section-{{ section.id }}-padding {
+          padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+          padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+        }
+
+        @media screen and (min-width: 750px) {
+          .section-{{ section.id }}-padding {
+            padding-top: {{ section.settings.padding_top }}px;
+            padding-bottom: {{ section.settings.padding_bottom }}px;
+          }
+        }
+
+      .testimonial-carousel {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto
+      }
+
+      .testimonials-wrapper {
+        width: 95%;
+        max-width: 500px;
+        margin: 0 auto
+      }
+
+      .testimonials-wrapper h4 {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 23px;
+        position: relative;
+        padding: 30px;
+        color: #000;
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 5px 5px 5px 0 rgba(23, 23, 25, .3)
+      }
+
+      .testimonials-blob,
+      .testimonials-img {
+        border-radius: 100%
+      }
+
+      .testimonials-img {
+        position: relative;
+        left: 50%;
+        overflow: hidden!important;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        margin-left: -50px;
+  /*       box-shadow: 0 0 0 5px #171719; */
+        transition: all ease-out .5s;
+        transform: translateY(-30%);
+        object-fit: cover;
+      }
+
+      .testimonial-carousel .active .testimonials-img {
+        transform: translateY(0);
+    /*     filter: brightness(1) */
+      }
+
+      .testimonials-person-info {
+        text-align: center;
+        color: #000;
+      }
+
+      .testimonials-blob {
+        position: relative;
+        left: 80%;
+        width: 3px;
+        height: 3px;
+        transform: rotate(45deg)
+      }
+
+      @keyframes anim {
+        0% {
+          opacity: 0;
+          box-shadow: 0 0 0 0 #fff, 0 0 0 0 #fff
+        }
+        50% {
+          box-shadow: 0 15px 0 0 #fff, 0 0 0 0 #fff
+        }
+        100% {
+          opacity: 1;
+          background: #fff;
+          box-shadow: 0 15px 0 4px #fff, 0 35px 0 6px #fff
+        }
+      }
+
+      .testimonial-carousel .active .testimonials-blob {
+        transform-origin: 50% 50%;
+        animation: anim linear .5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards
+      }
+
+      .testimonial-carousel {
+        overflow: hidden;
+        cursor: grab;
+      }
+
+      .testimonial-carousel:active {
+        cursor: grabbing
+      }
+
+      .testimonial-carousel .owl-item {
+        overflow: hidden;
+        transition: all ease-out .3s;
+        transform: scale(.7);
+        opacity: 0
+      }
+
+      .testimonial-carousel .owl-item.active {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      .testimonial-carousel .owl-next,
+      .testimonial-carousel .owl-prev {
+        font-size: 13px;
+        line-height: 35px;
+        position: absolute;
+        top: 50%;
+        padding: 0 10px;
+        transition: all ease-out .25s;
+        transform: translateY(-100%);
+        opacity: 1;
+        color: #fff;
+        border-radius: 3px;
+        background: #171719
+      }
+
+
+      .owl-theme .owl-controls .owl-buttons div {
+         background-color:#ededed;
+          opacity: 1;
+          width: 32px;
+          transition: 0.3s;
+      }
+
+      .owl-theme .owl-controls .owl-buttons div span{
+        color: black;
+        font-size: 25px;
+        transition: 0.3s;
+      }
+      .owl-theme .owl-controls .owl-buttons div:hover,
+      .owl-theme .owl-controls .owl-buttons div:hover {
+        color: #fff;
+        background: #000;
+      }
+
+      .owl-theme .owl-controls .owl-buttons div:hover span,
+      .owl-theme .owl-controls .owl-buttons div:hover span {
+        color: #fff;
+      }
+
+      .owl-buttons {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+      }
+
+      .owl-theme .owl-controls {
+          position: absolute;
+          width: 100%;
+          top: 55%;
+      }
+
+      .background-img{
+        background-image:url({{ section.settings.bg_img | image_url }});
+        background-repeat: no-repeat;
+        background-size: cover;
+             background-attachment: scroll;
+      }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient background-img">
+  <div class="section-{{ section.id }}-padding">
+    <h2 style=" font-size:80px; color:#0dca95; text-align: center; margin: 0; margin-bottom: -70px;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" fill="#b9d531">
+        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z"/>
+      </svg>
+    </h2>
+    <h3 class="title inline-richtext {{ section.settings.heading_size }}">
+      {{ section.settings.title }}
+    </h3>
+    <div class="owl-carousel owl-theme .testimonial-carousel">
+      {%- for block in section.blocks -%}
+        <div class="single-testimonial">
+          <div class="testimonials-wrapper">
+            <h4>
+              {{ block.settings.testimonials }}
+            </h4>
+            <div class="testimonials-blob"></div>
+            <div class="testimonials-img"><img src="{{ block.settings.client_img | image_url }}"></div>
+            <div class="testimonials-person-info">
+              <p>
+                <b>{{ block.settings.name }} - {{ block.settings.from }}</b><br>
+              </p>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "custom-testimonials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+       {
+        "type": "text",
+        "id": "title",
+        "default": "WHAT CUSTOMER SAY ABOUT US",
+        "label": "Heading"
+      },
+     {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonials",
+      "name": "testimonials",
+      "settings": [
+         {
+          "type": "image_picker",
+          "id": "client_img",
+          "label": "Customer Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Name",
+          "label": "name"
+        },
+        {
+          "type": "text",
+          "id": "from",
+          "default": "Address here",
+          "label": "Frome"
+        },
+        {
+          "type": "richtext",
+          "id": "testimonials",
+          "default": "<p>Testimonial text here</p>",
+          "label": "Testimonials"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-testimonials"
+    }
+  ]
+}
+{% endschema %}
