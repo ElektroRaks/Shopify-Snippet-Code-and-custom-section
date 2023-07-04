@@ -1,0 +1,18 @@
+// Add this schema to config/settings_schema.json, and after adding it, enable the navigation breadcrumbs under the theme settings on the Shopify builder.
+
+ {
+    "name": "Navigation",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_breadcrumb_nav",
+        "label": "Show breadcrumb navigation"
+      }
+    ]
+  },
+
+
+  // Shortcode: 
+  {% if settings.show_breadcrumb_nav %}
+    {% include 'breadcrumbs' %}
+  {% endif %}
